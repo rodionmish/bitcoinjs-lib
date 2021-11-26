@@ -1,0 +1,29 @@
+{   "from": [{
+        "address": "bchtest:qrlkz65uy2eqndz673zj6lhafeamspehey0k0eep0e",
+        "privateKey":"cc9241e8be9d85d8e5ac07d35d1549c4318c6f13dfab3d11f9615b579880dc6d"
+    }],
+    "outputs": [
+        {
+            "address": "bchtest:qzf0vmdr5cdw9wuzgf844gye0yndcqxva5nxmaqaa7",
+            "value": 1000000
+          },
+          {
+            "address": "bchtest:qzf0vmdr5cdw9wuzgf844gye0yndcqxva5nxmaqaa7",
+            "value": 7984140
+          }
+    ],
+    "inputs": [
+        {
+          "address": "bchtest:qrlkz65uy2eqndz673zj6lhafeamspehey0k0eep0e",
+          "txId": "732c98982b04f63e592bd4893fe04e2366ce7274f58ae0e33162d275d600a75d",
+          "vout": 2,
+          "value": 7997740
+        },
+        {
+          "address": "bchtest:qrlkz65uy2eqndz673zj6lhafeamspehey0k0eep0e",
+          "txId": "3686de1f69034de7e6c5b23511a890aa6ee96a69d625593e11d06d40d51c524f",
+          "vout": 19,
+          "value": 990140
+        }
+      ]
+}

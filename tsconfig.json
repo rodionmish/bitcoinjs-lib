@@ -5,12 +5,10 @@
     "outDir": "./src",
     "declaration": true,
     "rootDir": "./ts_src",
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "allowJs": false,
     "strict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
@@ -20,12 +18,11 @@
     "esModuleInterop": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true
+    // "paths": {
+    // "*": ["./src/@types/*"]
+    // }
+    // "typeRoots": ["./node_modules/@types", "./src/@types"]
   },
-  "include": [
-      "ts_src/**/*.ts"
-  ],
-  "exclude": [
-      "**/*.spec.ts",
-      "node_modules/**/*"
-  ]
+  "include": ["ts_src/**/*.ts"],
+  "exclude": ["**/*.spec.ts", "node_modules/**/*", "./src/@types/*"]
 }

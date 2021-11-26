@@ -3,8 +3,9 @@ import * as crypto from './crypto';
 import * as networks from './networks';
 import * as payments from './payments';
 import * as script from './script';
+import * as utxo from './utxo';
 
-export { address, crypto, networks, payments, script };
+export { address, crypto, networks, payments, script, utxo };
 
 export { Block } from './block';
 export { TaggedHashPrefix } from './crypto';

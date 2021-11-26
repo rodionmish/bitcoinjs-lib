@@ -158,6 +158,8 @@ export class Transaction {
     sequence?: number,
     scriptSig?: Buffer,
   ): number {
+    console.log('1111');
+
     typeforce(
       types.tuple(
         types.Hash256bit,
@@ -168,11 +170,25 @@ export class Transaction {
       arguments,
     );
 
+    console.log('22222');
+
     if (types.Null(sequence)) {
       sequence = Transaction.DEFAULT_SEQUENCE;
     }
 
+    console.log('3333');
+
     // Add the input and return the input's index
+    // this.ins.push({
+    //   hash,
+    //   index,
+    //   script: scriptSig || EMPTY_BUFFER,
+    //   sequence: sequence as number,
+    //   witness: EMPTY_WITNESS,
+    // }) - 1;
+
+    console.log('this.ins', this.ins);
+
     return (
       this.ins.push({
         hash,

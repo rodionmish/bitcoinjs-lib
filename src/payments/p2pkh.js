@@ -8,6 +8,7 @@ const types_1 = require('../types');
 const lazy = require('./lazy');
 const bs58check = require('bs58check');
 const OPS = bscript.OPS;
+const networks_2 = require('../utxo/networks');
 // input: {signature} {pubkey}
 // output: OP_DUP OP_HASH160 {hash160(pubkey)} OP_EQUALVERIFY OP_CHECKSIG
 function p2pkh(a, opts) {
@@ -40,7 +41,11 @@ function p2pkh(a, opts) {
   lazy.prop(o, 'address', () => {
     if (!o.hash) return;
     const payload = Buffer.allocUnsafe(21);
-    payload.writeUInt8(network.pubKeyHash, 0);
+    if ((0, networks_2.isZcash)(network)) {
+      payload.writeUInt16BE(network.pubKeyHash, 0);
+    } else {
+      payload.writeUInt8(network.pubKeyHash, 0);
+    }
     o.hash.copy(payload, 1);
     return bs58check.encode(payload);
   });

@@ -49,7 +49,8 @@ export function encode(signature: Buffer, hashType: number): Buffer {
     { signature, hashType },
   );
 
-  const hashTypeMod = hashType & ~0x80;
+  const hashTypeMod = hashType & ~0xc0;
+  console.log('HAHAHAHA', hashTypeMod);
   if (hashTypeMod <= 0 || hashTypeMod >= 4)
     throw new Error('Invalid hashType ' + hashType);
 

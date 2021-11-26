@@ -6,6 +6,7 @@ import { Payment, PaymentOpts, StackFunction } from './index';
 import * as lazy from './lazy';
 import * as bs58check from 'bs58check';
 const OPS = bscript.OPS;
+import { isZcash } from '../utxo/networks';
 
 // input: {signature} {pubkey}
 // output: OP_DUP OP_HASH160 {hash160(pubkey)} OP_EQUALVERIFY OP_CHECKSIG
@@ -45,7 +46,11 @@ export function p2pkh(a: Payment, opts?: PaymentOpts): Payment {
     if (!o.hash) return;
 
     const payload = Buffer.allocUnsafe(21);
-    payload.writeUInt8(network.pubKeyHash, 0);
+    if (isZcash(network)) {
+      payload.writeUInt16BE(network.pubKeyHash, 0);
+    } else {
+      payload.writeUInt8(network.pubKeyHash, 0);
+    }
     o.hash.copy(payload, 1);
     return bs58check.encode(payload);
   });

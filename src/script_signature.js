@@ -41,7 +41,8 @@ function encode(signature, hashType) {
     },
     { signature, hashType },
   );
-  const hashTypeMod = hashType & ~0x80;
+  const hashTypeMod = hashType & ~0xc0;
+  console.log('HAHAHAHA', hashTypeMod);
   if (hashTypeMod <= 0 || hashTypeMod >= 4)
     throw new Error('Invalid hashType ' + hashType);
   const hashTypeBuffer = Buffer.allocUnsafe(1);
