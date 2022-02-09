@@ -140,7 +140,7 @@ describe('Bitcoin-core', () => {
       const hashType = f[3] as number;
       const expectedHash = f[4];
 
-      const hashTypes = [];
+      const hashTypes: string[] = [];
       if ((hashType & 0x1f) === bitcoin.Transaction.SIGHASH_NONE)
         hashTypes.push('SIGHASH_NONE');
       else if ((hashType & 0x1f) === bitcoin.Transaction.SIGHASH_SINGLE)

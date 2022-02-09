@@ -100,35 +100,10 @@ export class ZcashTransaction extends UtxoTransaction {
   constructor(public network: ZcashNetwork, tx?: ZcashTransaction) {
     super(network, tx);
 
-    // let consensusBranchId;
-    // console.log('txtxtx', tx);
-
-    // if (tx) {
-    //   this.overwintered = tx.overwintered;
-    //   this.versionGroupId = tx.versionGroupId;
-    //   this.expiryHeight = tx.expiryHeight;
-
-    //   // if (tx.consensusBranchId !== undefined) {
-    //   //   consensusBranchId = tx.consensusBranchId;
-    //   // }
-    // }
-
-    // this.consensusBranchId = getDefaultConsensusBranchIdForVersion(
-    //   network,
-    //   this.version,
-    // );
-
-    // console.log('this.consensusBranchId', this.consensusBranchId);
-
-    // let consensusBranchId;
     if (tx) {
       this.overwintered = tx.overwintered;
       this.versionGroupId = tx.versionGroupId;
       this.expiryHeight = tx.expiryHeight;
-
-      // if (tx.consensusBranchId !== undefined) {
-      //   consensusBranchId = tx.consensusBranchId;
-      // }
     }
 
     this.consensusBranchId = getDefaultConsensusBranchIdForVersion(

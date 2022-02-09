@@ -47,6 +47,7 @@ describe('Bitcoin cash', () => {
       const signed = ECPair.fromPrivateKey(buf, {
         network: networks.zcashTest as Network,
       });
+
       signedPairs.set(input.address, signed);
     }
     inputs.forEach(input => {
@@ -60,6 +61,7 @@ describe('Bitcoin cash', () => {
     );
     inputs.forEach((input, index) => {
       const el = signedPairs.get(input.address);
+
       if (el !== undefined) {
         zCashBuilder.sign(index, el);
       }

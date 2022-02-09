@@ -79,14 +79,6 @@ export class UtxoTransactionBuilder<T extends UtxoTransaction = UtxoTransaction>
     // Since the `value` parameter is not passed to the legacy hashing method, we must store it
     // on the transaction input object.
 
-    console.log('signParam ssignParams', signParams);
-    console.log('keyPair keyPair', keyPair);
-    console.log('redeemScript redeemScript', redeemScript);
-    console.log('hashType hashType', hashType);
-    console.log('witnessValue witnessValue', witnessValue);
-    console.log('witnessScript witnessScript', witnessScript);
-    
-
     if (typeof signParams === 'number') {
       if (typeof witnessValue === 'number') {
         (this.tx.ins[signParams] as any).value = witnessValue;

@@ -18,8 +18,6 @@ export function fromBase58Check(address: string): Base58CheckResult {
 }
 
 export function toBase58Check(hash: Buffer, version: number): string {
-  console.log('HASH', hash);
-
   typeforce(types.tuple(types.Hash160bit, types.Number), arguments);
 
   const payload = Buffer.allocUnsafe(22);

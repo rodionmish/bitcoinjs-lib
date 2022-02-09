@@ -2,9 +2,9 @@ import * as baddress from './address';
 import { reverseBuffer } from './bufferutils';
 import * as classify from './classify';
 import * as bcrypto from './crypto';
-// import { Signer } from './ecpair';
+import { Signer } from './ecpair';
 // new
-import { Signer } from '.';
+// import { Signer } from '.';
 // import * as ECPair from './ecpair';
 // new
 import { ECPair } from 'ecpair';
@@ -324,8 +324,6 @@ export class TransactionBuilder {
       input.prevOutType = prevOutType || classify.output(options.prevOutScript);
     }
 
-    console.log('options', options, input);
-
     const vin = this.__TX.addInput(
       txHash,
       vout,
@@ -333,8 +331,6 @@ export class TransactionBuilder {
       options.scriptSig,
     );
     this.__INPUTS[vin] = input;
-
-    console.log('THIS.INPUTS', this.__INPUTS);
 
     this.__PREV_TX_SET[prevTxOut] = true;
     return vin;
@@ -352,8 +348,6 @@ export class TransactionBuilder {
     this.__INPUTS.forEach((input, i) => {
       if (!input.prevOutType && !allowIncomplete)
         throw new Error('Transaction is not complete');
-      console.log('inputinput', input);
-
       const result = build(input.prevOutType!, input, allowIncomplete);
       if (!result) {
         if (!allowIncomplete && input.prevOutType === SCRIPT_TYPES.NONSTANDARD)
@@ -1197,12 +1191,6 @@ function trySign({
   useLowR,
 }: SigningData): void {
   // enforce in order signing of public keys
-  console.log('input', input);
-  console.log('ourPubKey', ourPubKey);
-  console.log('keyPair', keyPair);
-  console.log('signatureHash', signatureHash);
-  console.log('hashType', hashType);
-  console.log('useLowR', useLowR);
   let signed = false;
   for (const [i, pubKey] of input.pubkeys!.entries()) {
     if (!ourPubKey.equals(pubKey!)) continue;
@@ -1216,6 +1204,7 @@ function trySign({
     }
 
     const signature = keyPair.sign(signatureHash, useLowR);
+
     input.signatures![i] = bscript.signature.encode(signature, hashType);
     signed = true;
   }
@@ -1247,18 +1236,6 @@ function getSigningData(
   witnessScript?: Buffer,
   useLowR?: boolean,
 ): SigningData {
-  console.log('network', network);
-  console.log('inputs', inputs);
-  console.log('needsOutputs', needsOutputs);
-  console.log('tx', tx);
-  console.log('signParams', signParams);
-  console.log('keyPair', keyPair);
-  console.log('redeemScript', redeemScript);
-  console.log('hashType', hashType);
-  console.log('witnessValue', witnessValue);
-  console.log('witnessScript', witnessScript);
-  console.log('useLowR', useLowR);
-
   let vin: number;
 
   if (typeof signParams === 'number') {
@@ -1286,8 +1263,6 @@ function getSigningData(
     throw new Error('sign requires keypair');
   }
   // TODO: remove keyPair.network matching in 4.0.0
-  console.log('netwrok', network);
-  console.log('keyPair.network', keyPair.network);
 
   if (keyPair.network && keyPair.network !== network)
     throw new TypeError('Inconsistent network');
@@ -1342,13 +1317,11 @@ function getSigningData(
       hashType,
     );
   } else {
-    console.log('vin vin vin', vin, input.signScript, hashType);
     signatureHash = tx.hashForSignature(
       vin,
       input.signScript as Buffer,
       hashType,
     );
-    console.log('QQQQQ', signatureHash);
   }
 
   return {

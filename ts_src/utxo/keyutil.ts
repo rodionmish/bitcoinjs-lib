@@ -1,21 +1,5 @@
 import { ECPair, ECPairInterface } from 'ecpair';
-import * as ECPairOrigin from 'ecpair';
 import { Network } from '../networks';
-import typeforce = require('typeforce');
-
-ECPairOrigin['Network'] = typeforce.compile({
-  messagePrefix: exports.typeforce.oneOf(
-    exports.typeforce.Buffer,
-    exports.typeforce.String,
-  ),
-  bip32: {
-    public: exports.typeforce.UInt32,
-    private: exports.typeforce.UInt32,
-  },
-  pubKeyHash: exports.typeforce.UInt8,
-  scriptHash: exports.typeforce.UInt8,
-  wif: exports.typeforce.UInt8,
-});
 
 /**
  * Create an ECPair from the raw private key bytes

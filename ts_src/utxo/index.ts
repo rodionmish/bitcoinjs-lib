@@ -7,4 +7,6 @@ export * from './UtxoTransaction';
 export * from './UtxoTransactionBuilder';
 export * from './Unspent';
 export * from './zcash';
+export * from './dash';
+export * from './bitcoincash/address';
 export * from './types';
